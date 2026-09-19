@@ -1,0 +1,57 @@
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zona-izquierda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+}
+
+.marca {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.titulo-central {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.zona-derecha {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 160px;
+}
+
+.boton-usuario mat-icon {
+  vertical-align: middle;
+}
+
+.barra-menu {
+  background-color: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+  min-height: 48px;
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.enlace-activo {
+  color: #1565c0;
+  font-weight: 600;
+}
+
+.contenedor-principal {
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+  min-height: calc(100vh - 64px);
+  background-color: #f5f5f5;
+}
