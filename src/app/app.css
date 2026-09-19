@@ -55,3 +55,18 @@
   min-height: calc(100vh - 64px);
   background-color: #f5f5f5;
 }
+
+.datos-usuario {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: default;
+}
+
+.fila-dato {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}

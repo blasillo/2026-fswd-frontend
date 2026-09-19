@@ -19,6 +19,17 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #menuUsuario="matMenu">
+        <div class="datos-usuario" (click)="$event.stopPropagation()">
+          <div class="fila-dato">
+            <mat-icon>email</mat-icon>
+            <span>{{ correoUsuario }}</span>
+          </div>
+          <div class="fila-dato">
+            <mat-icon>badge</mat-icon>
+            <span>{{ rolesUsuario.join(', ') }}</span>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
         <button mat-menu-item (click)="cerrarSesion()">
           <mat-icon>logout</mat-icon>
           <span>Cerrar sesión</span>

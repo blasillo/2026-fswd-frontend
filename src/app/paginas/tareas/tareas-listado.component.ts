@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import Keycloak from 'keycloak-js';
 
 import { TareaDto } from '../../modelos/tarea.modelo';
@@ -27,7 +28,8 @@ const COLORES_PERMITIDOS = ['Azul', 'Verde', 'Amarillo', 'Morado', 'Naranja', 'R
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   templateUrl: './tareas-listado.component.html',
   styleUrl: './tareas-listado.component.css'
@@ -35,6 +37,9 @@ const COLORES_PERMITIDOS = ['Azul', 'Verde', 'Amarillo', 'Morado', 'Naranja', 'R
 export class TareasListadoComponent {
   private readonly tareaServicio = inject(TareaService);
   private readonly keycloak = inject(Keycloak);
+  private readonly snackBar = inject(MatSnackBar);
+
+  guardando = signal(false);
 
   readonly colores = COLORES_PERMITIDOS;
   readonly columnas = ['nombre', 'estado', 'color', 'acciones'];
@@ -105,9 +110,18 @@ export class TareasListadoComponent {
       ? this.tareaServicio.modificarTarea(this.formulario)
       : this.tareaServicio.crearTarea(this.formulario);
 
-    observable.subscribe(() => {
-      this.mostrarFormulario.set(false);
-      this.cargarTareas();
+    this.guardando.set(true);
+    observable.subscribe({
+      next: () => {
+        this.guardando.set(false);
+        this.mostrarFormulario.set(false);
+        this.cargarTareas();
+      },
+      error: (error) => {
+        this.guardando.set(false);
+        const mensaje = error?.error?.message ?? 'No se ha podido guardar la tarea. Revisa los datos.';
+        this.snackBar.open(mensaje, 'Cerrar', { duration: 5000 });
+      }
     });
   }
 
@@ -115,6 +129,12 @@ export class TareasListadoComponent {
     if (tarea.id === null) {
       return;
     }
-    this.tareaServicio.borrarTarea(tarea.id).subscribe(() => this.cargarTareas());
+    this.tareaServicio.borrarTarea(tarea.id).subscribe({
+      next: () => this.cargarTareas(),
+      error: (error) => {
+        const mensaje = error?.error?.message ?? 'No se ha podido borrar la tarea.';
+        this.snackBar.open(mensaje, 'Cerrar', { duration: 5000 });
+      }
+    });
   }
 }

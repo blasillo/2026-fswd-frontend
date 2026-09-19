@@ -76,8 +76,8 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button (click)="cancelarFormulario()">Cancelar</button>
-        <button mat-flat-button color="primary" (click)="guardar()">Guardar</button>
+        <button mat-button (click)="cancelarFormulario()" [disabled]="guardando()">Cancelar</button>
+        <button mat-flat-button color="primary" (click)="guardar()" [disabled]="guardando()">Guardar</button>
       </mat-card-actions>
     </mat-card>
   </div>

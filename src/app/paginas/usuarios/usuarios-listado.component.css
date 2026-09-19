@@ -1,0 +1,64 @@
+.cabecera-listado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.tabla-usuarios {
+  width: 100%;
+  max-width: 700px;
+}
+
+.controles-paginacion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.fondo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.tarjeta-formulario {
+  width: 400px;
+}
+
+.campo-completo {
+  width: 100%;
+}
+
+.tabla-usuarios {
+  width: 100%;
+  max-width: none;
+}
+
+.tabla-usuarios td,
+.tabla-usuarios th {
+  white-space: nowrap;
+  padding-right: 24px;
+}
+
+mat-chip-set {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.chip-admin {
+  background-color: #d32f2f !important;
+  color: white !important;
+}
+
+.chip-base {
+  background-color: #1976d2 !important;
+  color: white !important;
+}
