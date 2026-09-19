@@ -1,0 +1,38 @@
+.cabecera-listado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.tabla-tareas {
+  width: 100%;
+  max-width: 700px;
+}
+
+.controles-paginacion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.fondo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.tarjeta-formulario {
+  width: 400px;
+}
+
+.campo-completo {
+  width: 100%;
+}
