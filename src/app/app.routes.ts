@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
 import { TareasListadoComponent } from './paginas/tareas/tareas-listado.component';
- 
+import { InicioComponent } from './paginas/inicio/inicio.component';
+
+import { authGuard } from './guardias/auth.guardia';
+
 export const routes: Routes = [
-  { path: 'tareas', component: TareasListadoComponent },
-  { path: '', redirectTo: 'tareas', pathMatch: 'full' }
+  { path: '', component: InicioComponent },
+  { path: 'tareas', component: TareasListadoComponent, canActivate: [authGuard] }
 ];
  

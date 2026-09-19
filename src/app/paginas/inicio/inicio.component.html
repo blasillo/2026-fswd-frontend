@@ -1,0 +1,17 @@
+@if (!estaAutenticado) {
+  <mat-card class="tarjeta-entrada">
+    <mat-card-header>
+      <mat-card-title>Bienvenido</mat-card-title>
+      <mat-card-subtitle>Inicia sesión para gestionar tus tareas</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Accede con tu cuenta corporativa para continuar.</p>
+    </mat-card-content>
+  </mat-card>
+} @else {
+  <mat-card class="tarjeta-entrada">
+    <mat-card-content>
+      <p>Usa el menú de arriba para acceder a Tareas o Usuarios.</p>
+    </mat-card-content>
+  </mat-card>
+}
