@@ -84,7 +84,7 @@ export class UsuariosListadoComponent {
     this.mostrarFormulario.set(false);
   }
 
-  guardar(): void {
+    guardar(): void {
     const enEdicion = this.usuarioEnEdicion();
     this.guardando.set(true);
 
@@ -106,8 +106,7 @@ export class UsuariosListadoComponent {
       },
       error: (error) => {
         this.guardando.set(false);
-        const mensaje = error?.error?.message ?? 'No se ha podido guardar el usuario. Revisa los datos.';
-        this.snackBar.open(mensaje, 'Cerrar', { duration: 5000 });
+        this.mostrarErrorHttp(error, 'No se ha podido guardar el usuario. Revisa los datos.');
       }
     });
   }
@@ -115,10 +114,17 @@ export class UsuariosListadoComponent {
   borrar(usuario: UsuarioDto): void {
     this.usuarioServicio.borrarUsuario(usuario.id).subscribe({
       next: () => this.cargarUsuarios(),
-      error: (error) => {
-        const mensaje = error?.error?.message ?? 'No se ha podido borrar el usuario.';
-        this.snackBar.open(mensaje, 'Cerrar', { duration: 5000 });
-      }
+      error: (error) => this.mostrarErrorHttp(error, 'No se ha podido borrar el usuario.')
     });
+  }
+
+  private mostrarErrorHttp(error: any, mensajePorDefecto: string): void {
+    let mensaje = mensajePorDefecto;
+    if (error?.status === 403) {
+      mensaje = 'No tienes permisos para realizar esta acción. Solo un administrador puede modificar usuarios.';
+    } else if (error?.error?.message) {
+      mensaje = error.error.message;
+    }
+    this.snackBar.open(mensaje, 'Cerrar', { duration: 5000 });
   }
 }
